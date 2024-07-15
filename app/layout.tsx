@@ -9,6 +9,7 @@ import {
   UserButton,
   RedirectToSignIn
 } from '@clerk/nextjs'
+import { ToastProvider } from "@/components/providers/toaster-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,11 +26,12 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang='en'>
-        <body>
+        <body className={inter.className}>
           <SignedOut>
           </SignedOut>
           <SignedIn>
           </SignedIn>
+          <ToastProvider />
           {children}
         </body>
       </html>
