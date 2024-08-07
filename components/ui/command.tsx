@@ -107,8 +107,8 @@ const CommandSeparator = React.forwardRef<
     className={cn("-mx-1 h-px bg-border", className)}
     {...props}
   />
-))
-CommandSeparator.displayName = CommandPrimitive.Separator.displayName
+));
+CommandSeparator.displayName = CommandPrimitive.Separator.displayName;
 
 const CommandItem = React.forwardRef<
   React.ElementRef<typeof CommandPrimitive.Item>,
@@ -122,7 +122,7 @@ const CommandItem = React.forwardRef<
     )}
     {...props}
   />
-))
+));
 
 CommandItem.displayName = CommandPrimitive.Item.displayName
 
