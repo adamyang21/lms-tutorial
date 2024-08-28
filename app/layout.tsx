@@ -10,6 +10,7 @@ import {
   RedirectToSignIn
 } from '@clerk/nextjs'
 import { ToastProvider } from "@/components/providers/toaster-provider";
+import { ConfettiProvider } from "@/components/providers/confetti-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -31,6 +32,7 @@ export default function RootLayout({
           </SignedOut>
           <SignedIn>
           </SignedIn>
+          <ConfettiProvider />
           <ToastProvider />
           {children}
         </body>
