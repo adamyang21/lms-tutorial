@@ -3,6 +3,10 @@ import { Banner } from "@/components/banner";
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { VideoPlayer } from "./_components/video-player";
+import { CourseEnrolButton } from "./_components/course-enrol-button";
+import { Separator } from "@/components/ui/separator";
+import { Preview } from "@/components/preview";
+import { File } from "lucide-react";
 
 const ChapterIdPage = async ({
     params
@@ -61,6 +65,47 @@ const ChapterIdPage = async ({
                         isLocked={isLocked}
                         completeOnEnd={completeOnEnd}
                     />
+                </div>
+                <div>
+                    <div className="p-4 flex flex-col md:flex-row items-center justify-between">
+                        <h2 className="text-2xl font-semibold mb-2">
+                            {chapter.title}
+                        </h2>
+                        {purchase ? (
+                            <div>
+                                {/*TODO: Add CourseProgressButton*/}
+                            </div>
+                        ): (
+                            <CourseEnrolButton
+                                courseId={params.courseId}
+                                price={course.price!}
+                            />
+                        )}
+                    </div>
+                    <Separator />
+                    <div>
+                        <Preview value={chapter.description!} />
+                    </div>
+                    {!!attachments.length && (
+                        <>
+                            <Separator />
+                            <div className="p-4">
+                                {attachments.map((attachments) => (
+                                    <a
+                                        href={attachments.url}
+                                        target="_blank"
+                                        key={attachments.id}
+                                        className="flex items-center p-3 w-full bg-red-200 border text-red-700 rounded-md hover:underline"
+                                    >
+                                        <File />
+                                        <p className="line-clamp-1">
+                                            {attachments.name}
+                                        </p>
+                                    </a>
+                                ))}
+                            </div>
+                        </>
+                    )}
                 </div>
             </div>
         </div>
